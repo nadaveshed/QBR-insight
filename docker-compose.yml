@@ -3,6 +3,9 @@ services:
     image: postgres:16-alpine
     environment:
       POSTGRES_USER: qbr
+      # Local development credentials only - not for production.
+      # The port below is bound to 127.0.0.1, so the database is not reachable from other machines.
+      # In a cloud deployment, use a managed database and supply the password from a secret store.
       POSTGRES_PASSWORD: qbr_local
       POSTGRES_DB: qbr
     ports: ["127.0.0.1:55432:5432"]
