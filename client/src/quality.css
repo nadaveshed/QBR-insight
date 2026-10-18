@@ -1,0 +1,7 @@
+.notice.success{background:#edf5e9;border-color:#d8e7cf;color:#48623b}
+.quality-item.severity-error{background:#fcf0eb;border-color:#efd5c9}
+.quality-item.severity-error .issue-code{color:#a0563e}
+.quality-item.severity-info{background:#f7f9f5;border-color:#e3e9dd}
+.quality-item.severity-info .issue-code{color:#728367}
+.information-notes{margin:20px 0;color:#6e7f60;font-size:12px}
+.information-notes>summary{cursor:pointer;margin-bottom:12px}

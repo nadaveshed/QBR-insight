@@ -1,0 +1,18 @@
+# Local environment files and secrets
+.env
+.env.*
+!.env.example
+
+# Node.js dependencies and build output
+node_modules/
+dist/
+
+# Runtime files
+data/uploads/
+data/evaluations/
+data/previews/
+coverage/
+*.log
+.docker-local/
+playwright-report/
+test-results/

@@ -1,0 +1,29 @@
+{
+  "name": "qbr-insight",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "shared",
+    "server",
+    "client"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "npm run build -w @qbr/contracts && concurrently -k -n api,worker,client \"npm run dev -w @qbr/server\" \"npm run dev:worker -w @qbr/server\" \"npm run dev -w @qbr/client\"",
+    "build": "npm run build -w @qbr/contracts && npm run build -w @qbr/server && npm run build -w @qbr/client",
+    "test": "npm run build -w @qbr/contracts && npm run test -w @qbr/server",
+    "test:integration": "npm run build -w @qbr/contracts && npm run test:integration -w @qbr/server",
+    "test:ui": "npm run build -w @qbr/contracts && playwright test",
+    "db:migrate": "npm run db:migrate -w @qbr/server",
+    "evaluate": "npm run build -w @qbr/contracts && npm run evaluate -w @qbr/server --",
+    "infra:up": "docker --config .docker-local compose up -d --wait",
+    "infra:down": "docker --config .docker-local compose down"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "concurrently": "^9.2.1",
+    "typescript": "^5.9.3"
+  }
+}
