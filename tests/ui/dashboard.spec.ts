@@ -19,7 +19,7 @@ test('the local API is reachable', async ({ request }) => {
 test('empty library and upload controls are usable without horizontal overflow', async ({ page }) => {
   await page.route('**/api/documents?**', route => route.fulfill({ json: { items: [] } }));
   await page.goto('/');
-  await expect(page.getByRole('heading', { name: 'From reports to clarity.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'QBR reports' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Choose PDFs' })).toBeVisible();
   await expect(page.getByText('Your uploaded reports will appear here.')).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);

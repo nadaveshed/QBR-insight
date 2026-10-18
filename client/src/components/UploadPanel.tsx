@@ -22,9 +22,9 @@ export function UploadPanel({ onUploaded }: { onUploaded: (id: string) => void }
   return <section className={`upload-panel ${dragging ? 'dragging' : ''}`} aria-label="Upload reports"
     onDragOver={e => { e.preventDefault(); setDragging(true); }} onDragLeave={() => setDragging(false)}
     onDrop={e => { e.preventDefault(); setDragging(false); void upload(Array.from(e.dataTransfer.files)); }}>
-    <div className="upload-icon" aria-hidden="true">↑</div><div><h2>Bring your reports into focus.</h2><p>Drop QBR PDFs here. We’ll extract the details and surface what needs a closer look.</p></div>
+    <div className="upload-text"><h2>Upload reports</h2><p>Drag PDF files here, or</p></div>
     <input ref={input} type="file" accept=".pdf,application/pdf" multiple hidden onChange={e => void upload(Array.from(e.target.files ?? []))} />
-    <button className="primary" disabled={busy} onClick={() => input.current?.click()}>{busy ? 'Uploading…' : 'Choose PDFs ↗'}</button>
+    <button className="primary" disabled={busy} onClick={() => input.current?.click()}>{busy ? 'Uploading…' : 'Choose PDFs'}</button>
     {message && <p className="upload-message" role="status">{message}</p>}
   </section>;
 }
