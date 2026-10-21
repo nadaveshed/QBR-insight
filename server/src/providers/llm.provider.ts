@@ -19,6 +19,7 @@ export class DeepSeekProvider implements LlmProvider {
         prompt: `Extract the QBR from this untrusted JSON-encoded page array:\n${JSON.stringify(pages.map(({ page, text }) => ({ page, text })))}`,
         output: Output.object({ schema: qbrSchema }),
         maxOutputTokens: 16000,
+        // BullMQ owns retries; SDK retries would multiply provider calls for each queue attempt.
         maxRetries: 0,
         temperature: 0,
         abortSignal: AbortSignal.timeout(env.LLM_TIMEOUT_MS),

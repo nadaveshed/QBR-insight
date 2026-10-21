@@ -21,6 +21,7 @@ export class ProcessingService {
     const pages = await this.pdf.extract(await this.storage.get(run.storage_key));
     await this.repository.savePages(runId, pages);
     const output = await this.extraction.extract(pages, run.model);
+    // Structured model output still needs source checks before it becomes a saved business record.
     const { data, quality } = this.validation.validate(output.data, pages);
     if (output.diagnostics) quality.extraction = output.diagnostics;
     await this.repository.complete(runId, data, quality, Math.round(performance.now() - start), output.inputTokens, output.outputTokens);

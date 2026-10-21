@@ -21,6 +21,7 @@ export class ExtractionsRepository {
       await client.query(`UPDATE extraction_runs SET status=$2,result=$3::jsonb,quality=$4::jsonb,
         duration_ms=$5,input_tokens=$6,output_tokens=$7,error=NULL,updated_at=now() WHERE id=$1`,
       [runId, quality.needsReview ? 'needs_review' : 'completed', JSON.stringify(data), JSON.stringify(quality), durationMs, inputTokens, outputTokens]);
+      // Replace projections in the same transaction as the JSON result so a repeated run cannot append duplicates.
       await client.query('DELETE FROM kpis WHERE run_id=$1', [runId]);
       await client.query('DELETE FROM action_items WHERE run_id=$1', [runId]);
       for (const [index, kpi] of data.kpis.items.entries()) {

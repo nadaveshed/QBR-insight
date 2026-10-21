@@ -36,6 +36,7 @@ export class ValidationService {
         ['EVIDENCE_INVALID', 'VALUE_MISSING', 'MISSING_WITH_VALUE', 'NUMERIC_UNVERIFIED', 'UNVERIFIED', 'EMPTY_SECTION'].includes(code) ? 'error' : 'warning');
       if (!issues.some(issue => issue.path === path && issue.code === code)) issues.push({ path, code, message, severity: level });
     };
+    // Quote matching checks traceability, not whether the quote logically proves the model's interpretation.
     const source = new Map(pages.map(p => [p.page, normalize(p.text)]));
     function visit(node: unknown, path: string) {
       if (!node || typeof node !== 'object') return;

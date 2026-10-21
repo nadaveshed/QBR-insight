@@ -4,6 +4,8 @@ Upload a QBR report as a PDF. The system extracts the required business informat
 
 How it works and why it was built this way: [ARCHITECTURE.md](ARCHITECTURE.md).
 
+Hebrew presentation guide for a 30–45 minute demo and code walkthrough: [PRESENTATION.he.md](PRESENTATION.he.md).
+
 ## Run
 
 Requirements: Node.js 24+, Docker Desktop, and a DeepSeek API key.
